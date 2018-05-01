@@ -15,11 +15,10 @@ setwd("C:/Users/songdongyuan/group02_final_project_packet")
 #biocLite("DEFormats")
 
 
-
+library(gplots)
 library(edgeR)
 library(limma)
 library(Glimma)
-library(gplots)
 library(org.Mm.eg.db)
 library(RColorBrewer)
 library(DESeq2)
