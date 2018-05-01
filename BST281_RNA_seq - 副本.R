@@ -1,4 +1,4 @@
-setwd("C:/Users/songdongyuan/BST281_HW")
+setwd("C:/Users/songdongyuan/group02_final_project_packet")
 
 source("https://bioconductor.org/biocLite.R")
 biocLite("edgeR")
