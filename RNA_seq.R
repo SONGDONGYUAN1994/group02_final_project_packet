@@ -1,13 +1,20 @@
 setwd("C:/Users/songdongyuan/group02_final_project_packet")
 
-source("https://bioconductor.org/biocLite.R")
-biocLite("edgeR")
-biocLite("limma")
-biocLite("Glimma")
-biocLite("org.Mm.eg.db")
-biocLite("RColorBrewer")
-biocLite("DESeq2")
-biocLite("DEFormats")
+#source("https://bioconductor.org/biocLite.R")
+
+#R3.3.5 has issues when installing data.table
+#install.packages("https://socialsciences.mcmaster.ca/jfox/.Pickup/data.table_1.10.4-3.zip",
+                 #repos=NULL, type="win.binary")
+
+#biocLite("edgeR")
+#biocLite("limma")
+#biocLite("Glimma")
+#biocLite("org.Mm.eg.db")
+#biocLite("RColorBrewer")
+#biocLite("DESeq2")
+#biocLite("DEFormats")
+
+
 
 library(edgeR)
 library(limma)
@@ -103,9 +110,9 @@ fit <- eBayes(fit, trend=TRUE)
 filtered_counts_n$counts <- round(filtered_counts_n$counts)
 
 # You can easily convert data format between edgeR and DESeq2
-dds <- as.DESeqDataSet(filtered_counts)
+dds <- as.DESeqDataSet(filtered_counts_n)
 res <- DESeq(dds)
-res <- results( res )
+res <- results(res)
 summary(res)
 
 resSig <- res[ which(res$padj < 0.1 ), ]
