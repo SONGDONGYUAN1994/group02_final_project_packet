@@ -2,7 +2,7 @@ setwd("C:/Users/songdongyuan/group02_final_project_packet")
 
 #source("https://bioconductor.org/biocLite.R")
 
-#R3.3.5 has issues when installing data.table
+#R3.5.0 has issues when installing data.table
 #install.packages("https://socialsciences.mcmaster.ca/jfox/.Pickup/data.table_1.10.4-3.zip",
                  #repos=NULL, type="win.binary")
 
@@ -13,7 +13,7 @@ setwd("C:/Users/songdongyuan/group02_final_project_packet")
 #biocLite("RColorBrewer")
 #biocLite("DESeq2")
 #biocLite("DEFormats")
-
+#install.packages("gplots")
 
 library(gplots)
 library(edgeR)
