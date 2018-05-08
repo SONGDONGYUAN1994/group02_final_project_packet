@@ -1,0 +1,1 @@
+cmd = /n/home08/songdongyuan/BST281/homer/H3K27ac_decrease_cl.bed hg19 /n/home08/songdongyuan/BST281/homer_output/H3K27ac_decrease -preparsedDir /n/home08/songdongyuan/BST281/homer/preparsed -size 500

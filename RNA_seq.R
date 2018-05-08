@@ -14,24 +14,26 @@ setwd("C:/Users/songdongyuan/group02_final_project_packet")
 #biocLite("DESeq2")
 #biocLite("DEFormats")
 #install.packages("gplots")
+rm(list=ls())
 
-library(gplots)
-library(edgeR)
-library(limma)
-library(Glimma)
-library(org.Mm.eg.db)
-library(RColorBrewer)
-library(DESeq2)
-library(DEFormats)
+suppressMessages(library(gplots))
+suppressMessages(library(edgeR))
+suppressMessages(library(limma))
+suppressMessages(library(Glimma))
+suppressMessages(library(org.Mm.eg.db))
+suppressMessages(library(RColorBrewer))
+suppressMessages(library(DESeq2))
+suppressMessages(library(DEFormats))
+
 
 filtered <- read.csv("filtered.tsv", sep = "\t", row.names = 1, header= TRUE, stringsAsFactors = F)
-filtered <- filtered[, c(4,2,6, 3,1,5)]
+filtered <- filtered[, c(3,1,5, 4,2,6)]
 
-group <- c("Co", "Co", "Co", "Mono", "Mono", "Mono")
-names(filtered) <- c("MM_HS5", "RPMI_HS5", "KMS11_HS5", "MM", "RPMI", "KMS11")
+group <- c( "Mono", "Mono", "Mono", "Co", "Co", "Co")
+names(filtered) <- c("MM", "RPMI", "KMS11", "MM_HS5", "RPMI_HS5", "KMS11_HS5")
 
-filtered_counts <- DGEList(filtered, group = group)
-filtered_counts$samples$lib.size
+filtered_counts <- DGEList(filtered, group = group, samples = c("MM", "RPMI", "KMS11", "MM", "RPMI", "KMS11") )
+#filtered_counts$samples$lib.size
 barplot(filtered_counts$samples$lib.size,names=colnames(filtered_counts),las=2)
 # Add a title to the plot
 title("Barplot of library sizes")
@@ -114,7 +116,25 @@ res <- DESeq(dds)
 res <- results(res)
 summary(res)
 
+vsd <- vst(dds, blind=FALSE)
+
+plotPCA(vsd, intgroup=c("group", "samples"))
+
+sampleDists <- dist(t(assay(vsd)))
+sampleDistMatrix <- as.matrix(sampleDists)
+rownames(sampleDistMatrix) <- paste(vsd$samples, vsd$group, sep="-")
+colnames(sampleDistMatrix) <- NULL
+colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
+pheatmap(sampleDistMatrix,
+         clustering_distance_rows=sampleDists,
+         clustering_distance_cols=sampleDists,
+         col=colors)
+
+
+
+
 resSig <- res[ which(res$padj < 0.1 ), ]
 
 DEgene_list <- rownames(resSig)
-write.table(DEgene_list, file = "DEgene_list.tsv", row.names = FALSE, sep = '\t', col.names = F)
+write.table(DEgene_list, file = "DEgene_list.tsv", row.names = FALSE, sep = '\t', col.names = F, quote=F)
+
