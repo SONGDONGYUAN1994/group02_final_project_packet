@@ -1,0 +1,5 @@
+"","SampleID","Tissue","Factor","Condition","Treatment","Replicate","bamReads","Peaks","PeakCaller"
+"4","MM1S/HS5_1","MM1S","H3K4me3","coculture","Full-Media",1,"data/Alignment_Post_Processing_15175.bam","MACS2peak/Alignment_Post_Processing_15175_peaks.narrowPeak","bed"
+"5","MM1S/HS5_2","MM1S","H3K4me3","coculture","Full-Media",2,"data/Alignment_Post_Processing_15022.bam","MACS2peak/Alignment_Post_Processing_15022_peaks.narrowPeak","bed"
+"1","MM1S_1","MM1S","H3K4me3","MMalone","Full-Media",1,"data/Alignment_Post_Processing_15280.bam","MACS2peak/Alignment_Post_Processing_15280_peaks.narrowPeak","bed"
+"2","MM1S_2","MM1S","H3K4me3","MMalone","Full-Media",2,"data/Alignment_Post_Processing_15223.bam","MACS2peak/Alignment_Post_Processing_15223_peaks.narrowPeak","bed"
